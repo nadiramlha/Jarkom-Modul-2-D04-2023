@@ -87,6 +87,7 @@
 	netmask 255.255.255.0
 	gateway 192.193.2.1
   ```
+Setelah melakukan network configuration, lakukan start project
 ## IP Configuration
 ```bash
 Switch1 : 192.193.1.1
@@ -129,4 +130,6 @@ apt-get install lynx -y
 ```
 Testing dilakukan pada client dengan menggunakan ``ping google.com``
 
+<img width="544" alt="no1nakula" src="https://github.com/nadiramlha/Jarkom-Modul-2-D04-2023/assets/88009253/553c3164-43ce-49ea-a7d1-9c2da81690ce">
 
+<img width="541" alt="no1sadewa" src="https://github.com/nadiramlha/Jarkom-Modul-2-D04-2023/assets/88009253/4526132e-f091-425a-a83e-db94408f7065">
