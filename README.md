@@ -101,3 +101,32 @@ ArjunaLoadBalancer : 192.193.2.2
 WerkudaraDNSSlave : 192.193.2.3
 YudhistiraDNSMaster : 192.193.2.4
 ```
+### Nomor 1
+#### Soal
+Yudhistira akan digunakan sebagai DNS Master, Werkudara sebagai DNS Slave, Arjuna merupakan Load Balancer yang terdiri dari beberapa Web Server yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Buatlah topologi dengan pembagian <a href='https://docs.google.com/spreadsheets/d/1OqwQblR_mXurPI4gEGqUe7v0LSr1yJViGVEzpMEm2e8/edit?usp=sharing'>sebagai berikut</a>. Folder topologi dapat diakses pada <a href='https://drive.google.com/drive/folders/1Ij9J1HdIW4yyPEoDqU1kAwTn_iIxg3gk?usp=sharing'>drive berikut</a>
+#### Penyelesaian
+Agar topologi dapat berjalan sesuai dengan fungsi diatas, terdapat script awal pada setiap node yang perlu dijalankan terlebih dahulu.
+```bash
+# Router
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.193.0.0/16
+```
+```bash
+# Master & Slave
+echo 'nameserver 192.168.122.1 # IP DNS' > /etc/resolv.conf
+apt-get update
+apt-get install bind9 -y
+```
+```bash
+# Client
+echo '
+nameserver 192.168.122.1 # IP DNS
+nameserver 192.193.2.4 # IP Yudhistira
+nameserver 192.193.2.3 # IP Werkudara
+' > /etc/resolv.conf
+apt-get update
+apt-get install dnsutils -y
+apt-get install lynx -y
+```
+Testing dilakukan pada client dengan menggunakan ``ping google.com``
+
+
